@@ -8,7 +8,7 @@ Public Class DialogAbout
     End Sub
 
     Private Sub DialogAbout_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        toolTip.SetToolTip(PictureBox1, "Join us on our discord server - Nerd Revolt")
     End Sub
 
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked

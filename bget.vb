@@ -39,11 +39,11 @@ Public Class bget
             FormBgetCommand("-list -local", True, False)
         End If
 
-        If DialogCheckForUpdate.checkUpdates() Then
-            updateLabel.Text = "Update Available"
-        Else
-            updateLabel.Text = ""
-        End If
+        'If DialogCheckForUpdate.checkUpdates() Then
+        'updateLabel.Text = "Update Available"
+        'Else
+        'updateLabel.Text = ""
+        'End If
 
 
         toolTip.SetToolTip(ButtonUpdateAll, "Check for and update local scripts")

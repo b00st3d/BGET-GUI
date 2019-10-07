@@ -51,6 +51,7 @@ Partial Class bget
         Me.ButtonUpdateAll = New System.Windows.Forms.Button()
         Me.bgetImage = New System.Windows.Forms.PictureBox()
         Me.updateLabel = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.mainWindow.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.bgetImage, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -269,12 +270,22 @@ Partial Class bget
         Me.updateLabel.Size = New System.Drawing.Size(0, 13)
         Me.updateLabel.TabIndex = 5
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(12, 371)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 13
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'bget
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ButtonShadow
         Me.ClientSize = New System.Drawing.Size(784, 561)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.updateLabel)
         Me.Controls.Add(Me.ButtonUpdateAll)
         Me.Controls.Add(Me.ButtonLocal)
@@ -329,4 +340,5 @@ Partial Class bget
     Friend WithEvents CheckForUpdatesToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents updateLabel As Label
     Friend WithEvents ClearSettingsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents Button1 As Button
 End Class

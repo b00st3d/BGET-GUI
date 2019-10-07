@@ -22,11 +22,14 @@ Partial Class DialogAbout
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(DialogAbout))
         Me.ButtonOK = New System.Windows.Forms.Button()
         Me.LabelAbout = New System.Windows.Forms.Label()
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.toolTip = New System.Windows.Forms.ToolTip(Me.components)
+        Me.Label1 = New System.Windows.Forms.Label()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -68,11 +71,21 @@ Partial Class DialogAbout
         Me.PictureBox1.TabIndex = 3
         Me.PictureBox1.TabStop = False
         '
+        'Label1
+        '
+        Me.Label1.Location = New System.Drawing.Point(12, 221)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(154, 29)
+        Me.Label1.TabIndex = 4
+        Me.Label1.Text = "Join us on our discord server" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Nerd Revolt"
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
         'DialogAbout
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(435, 315)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.LinkLabel1)
         Me.Controls.Add(Me.LabelAbout)
@@ -94,4 +107,6 @@ Partial Class DialogAbout
     Friend WithEvents LabelAbout As Label
     Friend WithEvents LinkLabel1 As LinkLabel
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents toolTip As ToolTip
+    Friend WithEvents Label1 As Label
 End Class

@@ -16,7 +16,6 @@ Public Class DialogCheckForUpdate
             bget.FormBgetCommand("-upgrade -" & My.Settings.dMethod & " -force", True, False)
         End If
         If _clientUpdateAvailable Then
-            'TODO update command
             DownloadUpdate()
         End If
         Me.Close()
@@ -58,10 +57,10 @@ Public Class DialogCheckForUpdate
                                        & vbCrLf & vbCrLf & vbCrLf & "Please click update to download the latest version of the bget script."
                 Else
                     If Not _scriptUpdateAvailable And _clientUpdateAvailable Then 'client update available
-                        UpdateLabel.Text = "Update available" & vbCrLf & vbCrLf & "Current client Version: " & _exeRemote & vbCrLf & "Your version: " & _exeLocal _
+                        UpdateLabel.Text = "Update available" & vbCrLf & vbCrLf & "Current Client Version: " & _exeRemote & vbCrLf & "Your version: " & _exeLocal _
                                            & vbCrLf & vbCrLf & vbCrLf & "Please click update to download the latest version of the bget client."
                     Else 'No updates available
-                        UpdateLabel.Text = "Bget is up to date."
+                        UpdateLabel.Text = "Bget is up to date." & vbCrLf & vbCrLf & "Current BGET Version: " & _bgetLocal & vbCrLf & "Current Client Version: " & _exeLocal & vbCrLf & vbCrLf & "Last updated: " & My.Settings.lastUpdate
                     End If
                 End If
             End If
@@ -74,13 +73,13 @@ Public Class DialogCheckForUpdate
 
 
     Private Function ClientUpdateCheck() As Object
-        Const address As String = "https://raw.githubusercontent.com/b00st3d/BGET-GUI/master/version.txt"
+        Const clientVersionAddress As String = "https://raw.githubusercontent.com/b00st3d/BGET-GUI/master/version.txt"
         Dim localVersion As String = My.Settings.version.Replace(" ", "")
-        Dim remoteVersion As String
+        Dim remoteVersion As String = ""
         Dim update As Object
         Try
             Using client As New WebClient()
-                remoteVersion = client.DownloadString(address).Replace(" ", "")
+                remoteVersion = client.DownloadString(clientVersionAddress).Replace(" ", "")
             End Using
         Catch ex As Exception
             remoteVersion = "error"
@@ -157,6 +156,12 @@ Public Class DialogCheckForUpdate
             update.CreateNoWindow = True
             update.FileName = "cmd.exe"
             Process.Start(update)
+            Dim t = New Date()
+            Dim m = t.Month
+            Dim d = t.Day
+            Dim y = t.Year
+            Dim curDate As String = m & "/" & d & "/" & y
+            My.Settings.lastUpdate = curDate
             Application.Exit()
         Catch ex As Exception
             Console.WriteLine(ex.ToString())

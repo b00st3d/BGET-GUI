@@ -26,6 +26,7 @@
         '
         '    Version.Text = System.String.Format(Version.Text, My.Application.Info.Version.Major, My.Application.Info.Version.Minor, My.Application.Info.Version.Build, My.Application.Info.Version.Revision)
 
+        My.Settings.version = "0.1.4"
         Version.Text = "Version " & My.Settings.version
     End Sub
 End Class

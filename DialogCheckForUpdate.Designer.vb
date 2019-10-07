@@ -74,7 +74,6 @@ Partial Class DialogCheckForUpdate
         Me.UpdateLabel.TabIndex = 1
         Me.UpdateLabel.Text = "Unable to access update server." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Please check your internet connection and try " &
     "again."
-        Me.UpdateLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'DialogCheckForUpdate
         '
