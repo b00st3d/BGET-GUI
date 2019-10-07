@@ -38,9 +38,24 @@ Public Class bget
         ElseIf Not My.Settings.saveLoc = "" Then
             FormBgetCommand("-list -local", True, False)
         End If
+
+        If DialogCheckForUpdate.checkUpdates() Then
+            updateLabel.Text = "Update Available"
+        Else
+            updateLabel.Text = ""
+        End If
+
+
+        toolTip.SetToolTip(ButtonUpdateAll, "Check for and update local scripts")
+        toolTip.SetToolTip(ButtonLocal, "Open scripts folder in explorer")
+        toolTip.SetToolTip(buttonLocalScripts, "Reload local scripts")
+        toolTip.SetToolTip(buttonPastebin, "Download script from pastebin.com")
+        toolTip.SetToolTip(buttonListServer, "Reload scripts available on server")
+        toolTip.SetToolTip(ComboBoxScripts, "List of available scripts on server")
+        toolTip.SetToolTip(ComboBoxLocal, "List of available scripts downloaded")
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click 'test button for clearing settings
+    Private Sub Button1_Click(sender As Object, e As EventArgs)  'test button for clearing settings
         My.Settings.bgetLocation = ""
         My.Settings.saveLoc = ""
         My.Settings.dMethod = "usevbs"
@@ -243,12 +258,15 @@ Public Class bget
         End If
     End Sub
 
-    Private Sub PrefrencesToolStripMenuItem_Click(sender As Object, e As EventArgs) _
-        Handles PrefrencesToolStripMenuItem.Click
+    Private Sub PreferencesToolStripMenuItem_Click(sender As Object, e As EventArgs) _
+        Handles PreferencesToolStripMenuItem.Click
         If My.Forms.optionsDialog.ShowDialog = DialogResult.OK Then
             toolTip.SetToolTip(methodLabel, UpdateMethodLabel())
-            UpdateBget()
-            FormBgetCommand("-list -local", True, False)
+
+            If Not My.Settings.bgetLocation = "" Then
+                UpdateBget()
+                FormBgetCommand("-list -local", True, False)
+            End If
         End If
     End Sub
 
@@ -376,13 +394,36 @@ Public Class bget
         If Not My.Settings.bgetLocation = "" Then
             FormBgetCommand("-update -" & My.Settings.dMethod & " -all", True, False)
         End If
+        ButtonUpdateAll.Enabled = True
     End Sub
 
     Private Sub CheckForUpdatesToolStripMenuItem_Click(sender As Object, e As EventArgs) _
         Handles CheckForUpdatesToolStripMenuItem.Click
-        DialogCheckForUpdate.ShowDialog()
+        If DialogCheckForUpdate.ShowDialog() = DialogResult.OK Then
+            Dim results = FormBgetCommand("-list -local", False, False)
+            LocalResults(results)
+        End If
+
     End Sub
 
-    Private Sub consoleTextBox_TextChanged(sender As Object, e As EventArgs) Handles consoleTextBox.TextChanged
+    Private Sub Button2_Click(sender As Object, e As EventArgs)
+        If DialogCheckForUpdate.checkUpdates() Then
+            updateLabel.Text = "Update Available"
+        Else
+            updateLabel.Text = ""
+        End If
+    End Sub
+
+    Private Sub ClearSettingsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClearSettingsToolStripMenuItem.Click
+        My.Settings.bgetLocation = ""
+        My.Settings.saveLoc = ""
+        My.Settings.dMethod = "usevbs"
+        My.Settings.Save()
+
+        UpdateMethodLabel()
+        UpdateBget()
+        consoleTextBox.Text = "Please download BGET From https://github.com/jahwi/bget/archive/master.zip" & vbCrLf &
+                              vbCrLf &
+                              "If you have already downloaded BGET, please located it in the preferences or by double clicking the red 'NO' under location set."
     End Sub
 End Class

@@ -22,12 +22,14 @@ Partial Class localScriptOptions
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.OK_Button = New System.Windows.Forms.Button()
         Me.Cancel_Button = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.ButtonOpenFolder = New System.Windows.Forms.Button()
         Me.ComboBoxOptions = New System.Windows.Forms.ComboBox()
+        Me.toolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.TableLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -122,4 +124,5 @@ Partial Class localScriptOptions
     Friend WithEvents Label1 As Label
     Friend WithEvents ButtonOpenFolder As Button
     Friend WithEvents ComboBoxOptions As ComboBox
+    Friend WithEvents toolTip As ToolTip
 End Class

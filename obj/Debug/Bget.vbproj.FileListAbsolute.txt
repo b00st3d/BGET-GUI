@@ -1,0 +1,17 @@
+E:\DEVELOPMENT\VB.NET\Bget\bin\Debug\Bget.exe.config
+E:\DEVELOPMENT\VB.NET\Bget\bin\Debug\Bget.exe
+E:\DEVELOPMENT\VB.NET\Bget\bin\Debug\Bget.pdb
+E:\DEVELOPMENT\VB.NET\Bget\bin\Debug\Bget.xml
+E:\DEVELOPMENT\VB.NET\Bget\obj\Debug\Bget.vbprojAssemblyReference.cache
+E:\DEVELOPMENT\VB.NET\Bget\obj\Debug\Bget.bget.resources
+E:\DEVELOPMENT\VB.NET\Bget\obj\Debug\Bget.DialogAbout.resources
+E:\DEVELOPMENT\VB.NET\Bget\obj\Debug\Bget.DialogCheckForUpdate.resources
+E:\DEVELOPMENT\VB.NET\Bget\obj\Debug\Bget.helpdoc.resources
+E:\DEVELOPMENT\VB.NET\Bget\obj\Debug\Bget.localScriptOptions.resources
+E:\DEVELOPMENT\VB.NET\Bget\obj\Debug\Bget.optionsDialog.resources
+E:\DEVELOPMENT\VB.NET\Bget\obj\Debug\Bget.Resources.resources
+E:\DEVELOPMENT\VB.NET\Bget\obj\Debug\Bget.SplashScreen1.resources
+E:\DEVELOPMENT\VB.NET\Bget\obj\Debug\Bget.vbproj.GenerateResource.cache
+E:\DEVELOPMENT\VB.NET\Bget\obj\Debug\Bget.exe
+E:\DEVELOPMENT\VB.NET\Bget\obj\Debug\Bget.xml
+E:\DEVELOPMENT\VB.NET\Bget\obj\Debug\Bget.pdb

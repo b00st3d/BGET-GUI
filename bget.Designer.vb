@@ -30,13 +30,13 @@ Partial Class bget
         Me.consoleTextBox = New System.Windows.Forms.RichTextBox()
         Me.buttonLocalScripts = New System.Windows.Forms.Button()
         Me.buttonListServer = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.methodLabel = New System.Windows.Forms.Label()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PrefrencesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ClearSettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PreferencesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DocumentationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -50,6 +50,7 @@ Partial Class bget
         Me.buttonPastebin = New System.Windows.Forms.Button()
         Me.ButtonUpdateAll = New System.Windows.Forms.Button()
         Me.bgetImage = New System.Windows.Forms.PictureBox()
+        Me.updateLabel = New System.Windows.Forms.Label()
         Me.mainWindow.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.bgetImage, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -116,16 +117,6 @@ Partial Class bget
         Me.buttonListServer.Text = "Reload Server Scripts"
         Me.buttonListServer.UseVisualStyleBackColor = True
         '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(2, 368)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(103, 35)
-        Me.Button1.TabIndex = 1
-        Me.Button1.TabStop = False
-        Me.Button1.Text = "Clear Settings"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
         'methodLabel
         '
         Me.methodLabel.Location = New System.Drawing.Point(3, 144)
@@ -159,16 +150,22 @@ Partial Class bget
         '
         'SettingsToolStripMenuItem
         '
-        Me.SettingsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PrefrencesToolStripMenuItem})
+        Me.SettingsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ClearSettingsToolStripMenuItem, Me.PreferencesToolStripMenuItem})
         Me.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem"
         Me.SettingsToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
         Me.SettingsToolStripMenuItem.Text = "Settings"
         '
-        'PrefrencesToolStripMenuItem
+        'ClearSettingsToolStripMenuItem
         '
-        Me.PrefrencesToolStripMenuItem.Name = "PrefrencesToolStripMenuItem"
-        Me.PrefrencesToolStripMenuItem.Size = New System.Drawing.Size(129, 22)
-        Me.PrefrencesToolStripMenuItem.Text = "Prefrences"
+        Me.ClearSettingsToolStripMenuItem.Name = "ClearSettingsToolStripMenuItem"
+        Me.ClearSettingsToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
+        Me.ClearSettingsToolStripMenuItem.Text = "Clear Settings"
+        '
+        'PreferencesToolStripMenuItem
+        '
+        Me.PreferencesToolStripMenuItem.Name = "PreferencesToolStripMenuItem"
+        Me.PreferencesToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
+        Me.PreferencesToolStripMenuItem.Text = "Preferences"
         '
         'HelpToolStripMenuItem
         '
@@ -248,7 +245,7 @@ Partial Class bget
         '
         'ButtonUpdateAll
         '
-        Me.ButtonUpdateAll.Location = New System.Drawing.Point(2, 522)
+        Me.ButtonUpdateAll.Location = New System.Drawing.Point(2, 523)
         Me.ButtonUpdateAll.Name = "ButtonUpdateAll"
         Me.ButtonUpdateAll.Size = New System.Drawing.Size(103, 35)
         Me.ButtonUpdateAll.TabIndex = 12
@@ -264,16 +261,24 @@ Partial Class bget
         Me.bgetImage.TabIndex = 0
         Me.bgetImage.TabStop = False
         '
+        'updateLabel
+        '
+        Me.updateLabel.AutoSize = True
+        Me.updateLabel.Location = New System.Drawing.Point(348, 546)
+        Me.updateLabel.Name = "updateLabel"
+        Me.updateLabel.Size = New System.Drawing.Size(0, 13)
+        Me.updateLabel.TabIndex = 5
+        '
         'bget
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ButtonShadow
         Me.ClientSize = New System.Drawing.Size(784, 561)
+        Me.Controls.Add(Me.updateLabel)
         Me.Controls.Add(Me.ButtonUpdateAll)
         Me.Controls.Add(Me.ButtonLocal)
         Me.Controls.Add(Me.buttonPastebin)
-        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.buttonListServer)
         Me.Controls.Add(Me.locationStatusLabel)
         Me.Controls.Add(Me.LocLabel)
@@ -284,6 +289,7 @@ Partial Class bget
         Me.Controls.Add(Me.MenuStrip1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MaximizeBox = False
         Me.MinimumSize = New System.Drawing.Size(500, 400)
         Me.Name = "bget"
         Me.Text = "Bget"
@@ -303,10 +309,9 @@ Partial Class bget
     Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SettingsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents consoleTextBox As RichTextBox
-    Friend WithEvents PrefrencesToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PreferencesToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DocumentationToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents Button1 As Button
     Friend WithEvents filePicker As OpenFileDialog
     Friend WithEvents methodLabel As Label
     Friend WithEvents downLabel As Label
@@ -322,4 +327,6 @@ Partial Class bget
     Friend WithEvents ComboBoxLocal As ComboBox
     Friend WithEvents ButtonUpdateAll As Button
     Friend WithEvents CheckForUpdatesToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents updateLabel As Label
+    Friend WithEvents ClearSettingsToolStripMenuItem As ToolStripMenuItem
 End Class

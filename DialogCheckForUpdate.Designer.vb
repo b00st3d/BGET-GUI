@@ -22,10 +22,12 @@ Partial Class DialogCheckForUpdate
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.Update_Button = New System.Windows.Forms.Button()
         Me.UpdateClose_Button = New System.Windows.Forms.Button()
         Me.UpdateLabel = New System.Windows.Forms.Label()
+        Me.toolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.TableLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -47,7 +49,6 @@ Partial Class DialogCheckForUpdate
         'Update_Button
         '
         Me.Update_Button.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Update_Button.Enabled = False
         Me.Update_Button.Location = New System.Drawing.Point(3, 3)
         Me.Update_Button.Name = "Update_Button"
         Me.Update_Button.Size = New System.Drawing.Size(67, 23)
@@ -100,4 +101,5 @@ Partial Class DialogCheckForUpdate
     Friend WithEvents Update_Button As System.Windows.Forms.Button
     Friend WithEvents UpdateClose_Button As System.Windows.Forms.Button
     Friend WithEvents UpdateLabel As Label
+    Friend WithEvents toolTip As ToolTip
 End Class
