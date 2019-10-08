@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Bget.exe" size="344504">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Bget.exe" size="343992">
       <assemblyIdentity name="Bget" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>R9ld3svYyNMSZ7+M8bp4vBlxivZFINW/V5h5orqcYWs=</dsig:DigestValue>
+        <dsig:DigestValue>+MJPzB4H+aIVss0cBeZmtaJhh+n2FpQU5aCU824gVMQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
