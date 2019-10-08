@@ -26,7 +26,11 @@
         '
         '    Version.Text = System.String.Format(Version.Text, My.Application.Info.Version.Major, My.Application.Info.Version.Minor, My.Application.Info.Version.Build, My.Application.Info.Version.Revision)
 
-        My.Settings.version = "0.1.4"
+        My.Settings.version = "0.1.5"
         Version.Text = "Version " & My.Settings.version
+    End Sub
+
+    Private Sub MainLayoutPanel_Paint(sender As Object, e As PaintEventArgs) Handles MainLayoutPanel.Paint
+
     End Sub
 End Class

@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Bget.exe" size="343992">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Bget.exe" size="344504">
       <assemblyIdentity name="Bget" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>VIOIGlPW2+432q1xjfD2FHL0b9CoYi6CIhCo1Z/DDlA=</dsig:DigestValue>
+        <dsig:DigestValue>sVz1HaxRycZnFRQI3YUxLCBRCg09nG/1Wq+oAo6GQgg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -60,7 +60,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>+DBtziOY352HBcCTCQvkOY5vlfLEuI96Lz83f4Z+ksI=</dsig:DigestValue>
+      <dsig:DigestValue>VQjgrLImnx87ZOjEuaqrIK1CwKa+hg0fgCYLUsw6IDU=</dsig:DigestValue>
     </hash>
   </file>
   <file name="bget.ico" size="65272">

@@ -1,7 +1,6 @@
 ﻿Imports System.IO
 
 'TODO build installer
-'TODO exe updater
 
 Public Class bget
     ReadOnly _scriptsList As New List(Of Script)
@@ -39,13 +38,6 @@ Public Class bget
             FormBgetCommand("-list -local", True, False)
         End If
 
-        'If DialogCheckForUpdate.checkUpdates() Then
-        'updateLabel.Text = "Update Available"
-        'Else
-        'updateLabel.Text = ""
-        'End If
-
-
         toolTip.SetToolTip(ButtonUpdateAll, "Check for and update local scripts")
         toolTip.SetToolTip(ButtonLocal, "Open scripts folder in explorer")
         toolTip.SetToolTip(buttonLocalScripts, "Reload local scripts")
@@ -55,18 +47,9 @@ Public Class bget
         toolTip.SetToolTip(ComboBoxLocal, "List of available scripts downloaded")
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs)  'test button for clearing settings
-        My.Settings.bgetLocation = ""
-        My.Settings.saveLoc = ""
-        My.Settings.dMethod = "usevbs"
-        My.Settings.Save()
-
-        UpdateMethodLabel()
-        UpdateBget()
-    End Sub
-
     Private Sub LocalResults(result) 'sub to read local scripts into combobox
         _localList.Clear()
+        ComboBoxLocal.Items.Clear()
         Dim read As StreamReader
         Try
             read = File.OpenText(result)
@@ -122,24 +105,7 @@ Public Class bget
         End Try
     End Sub
 
-    Private Sub ComboBoxScripts_SelectedIndexChanged(sender As Object, e As EventArgs) _
-        Handles ComboBoxScripts.SelectedIndexChanged
-        Dim i As Integer = ComboBoxScripts.SelectedIndex
-        Dim script As Object = _scriptsList(i)
-        Dim msg = "Click OK to download" & vbCrLf & vbCrLf & vbCrLf & "Script Name: " & script.Name & vbCrLf &
-                  "Description: " & script.Description & vbCrLf & "Author: " & script.Author & vbCrLf & "Category: " &
-                  script.Category & vbCrLf & "Last Modified: " & script.Modified
-        Dim downloader As Integer = MsgBox(msg, vbOKCancel, "Download")
-        If downloader = 1 Then
-            FormBgetCommand("-get -" & My.Settings.dMethod & " " & script.Name, True, False)
-            ComboBoxLocal.Items.Clear()
-            LocalResults(FormBgetCommand("-list -local", False, False))
-        End If
-    End Sub
 
-    Private Sub ComboBoxScripts_KeyDown(sender As Object, e As KeyPressEventArgs) Handles ComboBoxScripts.KeyPress
-        e.Handled = True
-    End Sub
 
 
     Public Sub UpdateBget()
@@ -209,7 +175,7 @@ Public Class bget
         Return fullOutputName
     End Function
 
-    Private Function ExecuteDosScript(batchScriptLines As List(Of String)) As String
+    Private Sub ExecuteDosScript(batchScriptLines As List(Of String))
         Dim outputString As String = String.Empty
         Using process As New Process
             AddHandler process.OutputDataReceived, Sub(sender As Object, lineOut As DataReceivedEventArgs)
@@ -235,8 +201,7 @@ Public Class bget
             Loop Until process.HasExited
         End Using
         consoleTextBox.Text = ""
-        Return outputString
-    End Function
+    End Sub
 
     Private Sub LocationStatusLabel_Click(sender As Object, e As EventArgs) Handles locationStatusLabel.DoubleClick
         Dim arg = "bgetLoc"
@@ -319,47 +284,94 @@ Public Class bget
 
     Private Sub ComboBoxLocal_SelectedIndexChanged(sender As Object, e As EventArgs) _
         Handles ComboBoxLocal.SelectedIndexChanged
-        If Not ComboBoxLocal.SelectedIndex = -1 Then
-            Dim script As Object = _localList(ComboBoxLocal.SelectedIndex)
-            Dim response As Integer =
-                    MsgBox(
-                        "Click OK to access more options for the script." & vbCrLf & vbCrLf & "Script name: " &
-                        script.name, vbOKCancel, "Local Script Options")
-            Dim arg = script.name
-            Dim localOptions = New localScriptOptions
-            Dim dialogReturn = ""
-            Dim filepath = My.Settings.saveLoc & "\" & arg
-            If response = 1 Then
-                localOptions.Tag = arg
-                If localOptions.ShowDialog() = DialogResult.OK Then
-                    If Not localOptions.ComboBoxOptions.SelectedIndex = -1 Then
-                        dialogReturn = localOptions.ComboBoxOptions.SelectedItem.ToString
-                    End If
-                End If
-                If dialogReturn = "Info" Then
-                    FormBgetCommand("-info -" & My.Settings.dMethod & " " & arg, True, False)
-                End If
-                If dialogReturn = "Update" Then
-                    FormBgetCommand("-update -" & My.Settings.dMethod & " " & arg & " -force", True, False)
-                End If
-                If dialogReturn = "Delete" Then
-                    Dim deleteBackout As Integer = MsgBox("Are you sure you want to delete " & arg & "?", vbYesNo,
-                                                          "Delete File")
-                    If deleteBackout = 6 Then
-                        If Directory.Exists(filepath) Then
-                            Directory.Delete(filepath, True)
-                            ComboBoxLocal.Items.Clear()
-                            ComboBoxLocal.Text = "Local Scripts"
-                            LocalResults(FormBgetCommand("-list -local", False, False))
+        If ComboBoxLocal.SelectedIndex = -1 Then
+            ActiveControl = consoleTextBox
+            ComboBoxLocal.Text = "Server Scripts"
+        End If
+        Try
+            If Not ComboBoxLocal.SelectedIndex = -1 Then
+                Dim script As Object = _localList(ComboBoxLocal.SelectedIndex)
+                Dim response As Integer =
+                        MsgBox(
+                            "Click OK to access more options for the script." & vbCrLf & vbCrLf & "Script name: " &
+                            script.name, vbOKCancel, "Local Script Options")
+                Dim arg = script.name
+                Dim localOptions = New localScriptOptions
+                Dim dialogReturn = ""
+                Dim filepath = My.Settings.saveLoc & "\" & arg
+                If response = 1 Then
+                    localOptions.Tag = arg
+                    If localOptions.ShowDialog() = DialogResult.OK Then
+                        If Not localOptions.ComboBoxOptions.SelectedIndex = -1 Then
+                            dialogReturn = localOptions.ComboBoxOptions.SelectedItem.ToString
+                            localOptions.Dispose()
                         End If
                     End If
-
+                    If dialogReturn = "Info" Then
+                        FormBgetCommand("-info -" & My.Settings.dMethod & " " & arg, True, False)
+                    End If
+                    If dialogReturn = "Update" Then
+                        FormBgetCommand("-update -" & My.Settings.dMethod & " " & arg & " -force", True, False)
+                    End If
+                    If dialogReturn = "Delete" Then
+                        Dim deleteBackout As Integer = MsgBox("Are you sure you want to delete " & arg & "?", vbYesNo,
+                                                              "Delete File")
+                        If deleteBackout = 6 Then
+                            If Directory.Exists(filepath) Then
+                                Try
+                                    Directory.Delete(filepath, True)
+                                Catch ex As Exception
+                                    MsgBox("Error deleting file")
+                                End Try
+                                'ComboBoxLocal.Items.Clear()
+                                LocalResults(FormBgetCommand("-list -local", False, False))
+                            End If
+                        End If
+                    End If
                 End If
             End If
-        End If
+        Catch ex As Exception
+        End Try
+        For i As Integer = 1 To 7
+            System.Windows.Forms.SendKeys.Send("{TAB}") 'send 7 tab keys so lostfocus will fire and return to combobox...I know..I don't care.
+        Next
+
     End Sub
 
     Private Sub ComboBoxLocal_KeyPress(sender As Object, e As KeyPressEventArgs) Handles ComboBoxLocal.KeyPress
+        e.Handled = True
+    End Sub
+
+    Private Sub ComboBoxLocal_LostFocus(sender As Object, e As EventArgs) Handles ComboBoxLocal.LostFocus
+        If ComboBoxLocal.Text = "" Then
+            ComboBoxLocal.Text = "Server Scripts"
+        End If
+    End Sub
+
+    Private Sub ComboBoxScripts_SelectedIndexChanged(sender As Object, e As EventArgs) _
+        Handles ComboBoxScripts.SelectedIndexChanged
+        Try
+            Dim i As Integer = ComboBoxScripts.SelectedIndex
+            Dim script As Object = _scriptsList(i)
+            Dim msg = "Click OK to download" & vbCrLf & vbCrLf & vbCrLf & "Script Name: " & script.Name & vbCrLf &
+                      "Description: " & script.Description & vbCrLf & "Author: " & script.Author & vbCrLf & "Category: " &
+                      script.Category & vbCrLf & "Last Modified: " & script.Modified
+            Dim downloader As Integer = MsgBox(msg, vbOKCancel, "Download")
+            If downloader = 1 Then
+                FormBgetCommand("-get -" & My.Settings.dMethod & " " & script.Name, True, False)
+                ComboBoxLocal.Items.Clear()
+                LocalResults(FormBgetCommand("-list -local", False, False))
+            End If
+        Catch ex As Exception
+            ComboBoxScripts.SelectedIndex = -1
+        End Try
+    End Sub
+
+    Private Sub ComboBoxScripts_LostFocus(sender As Object, e As EventArgs) Handles ComboBoxScripts.LostFocus
+        ComboBoxScripts.Text = "Server Scripts"
+    End Sub
+
+    Private Sub ComboBoxScripts_KeyDown(sender As Object, e As KeyPressEventArgs) Handles ComboBoxScripts.KeyPress
         e.Handled = True
     End Sub
 
@@ -404,14 +416,6 @@ Public Class bget
             LocalResults(results)
         End If
 
-    End Sub
-
-    Private Sub Button2_Click(sender As Object, e As EventArgs)
-        If DialogCheckForUpdate.checkUpdates() Then
-            updateLabel.Text = "Update Available"
-        Else
-            updateLabel.Text = ""
-        End If
     End Sub
 
     Private Sub ClearSettingsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClearSettingsToolStripMenuItem.Click

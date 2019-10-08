@@ -51,7 +51,6 @@ Partial Class bget
         Me.ButtonUpdateAll = New System.Windows.Forms.Button()
         Me.bgetImage = New System.Windows.Forms.PictureBox()
         Me.updateLabel = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.mainWindow.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.bgetImage, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -78,16 +77,17 @@ Partial Class bget
         Me.ComboBoxLocal.Location = New System.Drawing.Point(3, 488)
         Me.ComboBoxLocal.Name = "ComboBoxLocal"
         Me.ComboBoxLocal.Size = New System.Drawing.Size(121, 21)
-        Me.ComboBoxLocal.TabIndex = 4
+        Me.ComboBoxLocal.TabIndex = 2
         Me.ComboBoxLocal.Text = "Local Scripts"
         '
         'ComboBoxScripts
         '
         Me.ComboBoxScripts.FormattingEnabled = True
+        Me.ComboBoxScripts.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.ComboBoxScripts.Location = New System.Drawing.Point(539, 488)
         Me.ComboBoxScripts.Name = "ComboBoxScripts"
         Me.ComboBoxScripts.Size = New System.Drawing.Size(121, 21)
-        Me.ComboBoxScripts.TabIndex = 3
+        Me.ComboBoxScripts.TabIndex = 5
         Me.ComboBoxScripts.Text = "Server Scripts"
         '
         'consoleTextBox
@@ -98,6 +98,7 @@ Partial Class bget
         Me.consoleTextBox.ReadOnly = True
         Me.consoleTextBox.Size = New System.Drawing.Size(657, 483)
         Me.consoleTextBox.TabIndex = 0
+        Me.consoleTextBox.TabStop = False
         Me.consoleTextBox.Text = ""
         '
         'buttonLocalScripts
@@ -105,7 +106,7 @@ Partial Class bget
         Me.buttonLocalScripts.Location = New System.Drawing.Point(2, 511)
         Me.buttonLocalScripts.Name = "buttonLocalScripts"
         Me.buttonLocalScripts.Size = New System.Drawing.Size(122, 23)
-        Me.buttonLocalScripts.TabIndex = 1
+        Me.buttonLocalScripts.TabIndex = 3
         Me.buttonLocalScripts.Text = "Reload Local Scripts"
         Me.buttonLocalScripts.UseVisualStyleBackColor = True
         '
@@ -114,7 +115,7 @@ Partial Class bget
         Me.buttonListServer.Location = New System.Drawing.Point(645, 536)
         Me.buttonListServer.Name = "buttonListServer"
         Me.buttonListServer.Size = New System.Drawing.Size(121, 23)
-        Me.buttonListServer.TabIndex = 2
+        Me.buttonListServer.TabIndex = 6
         Me.buttonListServer.Text = "Reload Server Scripts"
         Me.buttonListServer.UseVisualStyleBackColor = True
         '
@@ -231,7 +232,7 @@ Partial Class bget
         Me.ButtonLocal.Location = New System.Drawing.Point(2, 214)
         Me.ButtonLocal.Name = "ButtonLocal"
         Me.ButtonLocal.Size = New System.Drawing.Size(103, 35)
-        Me.ButtonLocal.TabIndex = 11
+        Me.ButtonLocal.TabIndex = 0
         Me.ButtonLocal.Text = "Open Scripts" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " Folder"
         Me.ButtonLocal.UseVisualStyleBackColor = True
         '
@@ -249,7 +250,7 @@ Partial Class bget
         Me.ButtonUpdateAll.Location = New System.Drawing.Point(2, 523)
         Me.ButtonUpdateAll.Name = "ButtonUpdateAll"
         Me.ButtonUpdateAll.Size = New System.Drawing.Size(103, 35)
-        Me.ButtonUpdateAll.TabIndex = 12
+        Me.ButtonUpdateAll.TabIndex = 1
         Me.ButtonUpdateAll.Text = "Update Local Scripts"
         Me.ButtonUpdateAll.UseVisualStyleBackColor = True
         '
@@ -270,22 +271,12 @@ Partial Class bget
         Me.updateLabel.Size = New System.Drawing.Size(0, 13)
         Me.updateLabel.TabIndex = 5
         '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(12, 371)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 13
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
         'bget
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ButtonShadow
         Me.ClientSize = New System.Drawing.Size(784, 561)
-        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.updateLabel)
         Me.Controls.Add(Me.ButtonUpdateAll)
         Me.Controls.Add(Me.ButtonLocal)
@@ -340,5 +331,4 @@ Partial Class bget
     Friend WithEvents CheckForUpdatesToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents updateLabel As Label
     Friend WithEvents ClearSettingsToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents Button1 As Button
 End Class
